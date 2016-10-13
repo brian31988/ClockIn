@@ -5,6 +5,11 @@
  */
 package View;
 
+import Model.Spreadsheet;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author brian.marshall
@@ -34,36 +39,41 @@ public class View extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        clockInButton = new javax.swing.JButton();
+        beginLunchButton = new javax.swing.JButton();
+        endLunchButton = new javax.swing.JButton();
+        clockOutButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Time Clock 1.gif"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        clockInButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Time Clock 1.gif"))); // NOI18N
+        clockInButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                clockInButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(50, 160, 120, 96);
+        jPanel1.add(clockInButton);
+        clockInButton.setBounds(50, 160, 120, 96);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/clock out.jpg"))); // NOI18N
-        jPanel1.add(jButton2);
-        jButton2.setBounds(530, 160, 100, 100);
+        beginLunchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/clock out.jpg"))); // NOI18N
+        beginLunchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beginLunchButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(beginLunchButton);
+        beginLunchButton.setBounds(530, 160, 100, 100);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lunchb.jpg"))); // NOI18N
-        jPanel1.add(jButton3);
-        jButton3.setBounds(200, 160, 130, 96);
+        endLunchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lunchb.jpg"))); // NOI18N
+        jPanel1.add(endLunchButton);
+        endLunchButton.setBounds(200, 160, 130, 96);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/back-to-work.jpg"))); // NOI18N
-        jPanel1.add(jButton4);
-        jButton4.setBounds(360, 160, 129, 97);
+        clockOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/back-to-work.jpg"))); // NOI18N
+        jPanel1.add(clockOutButton);
+        clockOutButton.setBounds(360, 160, 129, 97);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/1-bg.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -87,16 +97,30 @@ public class View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void clockInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockInButtonActionPerformed
+        try {
+            Spreadsheet timeSheet = new Spreadsheet();
+            timeSheet.clockIn();
+        } catch (IOException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_clockInButtonActionPerformed
+
+    private void beginLunchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginLunchButtonActionPerformed
+        try {
+            Spreadsheet timeSheet = new Spreadsheet();
+            timeSheet.clockOut();
+        } catch (IOException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_beginLunchButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton beginLunchButton;
+    private javax.swing.JButton clockInButton;
+    private javax.swing.JButton clockOutButton;
+    private javax.swing.JButton endLunchButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
